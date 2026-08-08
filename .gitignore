@@ -1,0 +1,46 @@
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.VC.db
+*.VC.VC.opendb
+
+# MSBuild output
+Debug/
+Release/
+x64/
+x86/
+iosdumper/
+*.obj
+*.pdb
+*.ilk
+*.tlog
+*.recipe
+*.log
+
+# CMake output
+build/
+build-*/
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+CTestTestfile.cmake
+Testing/
+CMakeUserPresets.json
+
+# Generated dumps
+out/
+diagnostics.json
+iosoccer_offsets.json
+*.tmp
+
+# Editors and operating systems
+.idea/
+.vscode/
+*.swp
+Thumbs.db
+Desktop.ini
+.DS_Store

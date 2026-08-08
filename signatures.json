@@ -1,0 +1,46 @@
+{
+  "schema": 1,
+  "module": "client.dll",
+  "signatures": [
+    {
+      "name": "g_pClientMode",
+      "pattern": "48 8B 0D ? ? ? ? 85 F6",
+      "kind": "rip_rel32",
+      "required": true,
+      "disp_offset": 3,
+      "instruction_size": 7
+    },
+    {
+      "name": "C_BaseEntity_EstimateAbsVelocity",
+      "pattern": "48 89 5C 24 ? 57 48 83 EC 30 48 8B FA 48 8B D9 E8 ? ? ? ? 48 3B D8",
+      "kind": "match",
+      "required": true
+    },
+    {
+      "name": "CParticleProperty_Create",
+      "pattern": "44 89 4C 24 ? 44 89 44 24 ? 53 55",
+      "kind": "match",
+      "required": true
+    },
+    {
+      "name": "CParticleProperty_StopImmediate",
+      "pattern": "48 89 5C 24 ? 57 48 83 EC 20 8B 79 ? 48 8B DA 48 85 D2",
+      "kind": "match",
+      "required": true
+    },
+    {
+      "name": "CParticleSystemMgr_ReadConfigFile",
+      "pattern": "48 89 5C 24 ? 48 89 6C 24 ? 48 89 74 24 ? 57 41 56 41 57 48 81 EC A0 02 00 00",
+      "kind": "match",
+      "required": true
+    },
+    {
+      "name": "g_pParticleSystemMgr",
+      "pattern": "48 8B 0D ? ? ? ? 45 33 C9 44 0F B6 C5 48 8B D0 E8 ? ? ? ?",
+      "kind": "rip_rel32",
+      "required": true,
+      "disp_offset": 3,
+      "instruction_size": 7
+    }
+  ]
+}

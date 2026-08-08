@@ -1,0 +1,48 @@
+name: build
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        configuration: [Debug, Release]
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Configure
+        run: >-
+          cmake -S . -B build-${{ matrix.configuration }} -A x64
+          -DBUILD_TESTING=ON
+
+      - name: Build
+        run: cmake --build build-${{ matrix.configuration }} --config ${{ matrix.configuration }} --parallel
+
+      - name: Test
+        run: ctest --test-dir build-${{ matrix.configuration }} -C ${{ matrix.configuration }} --output-on-failure
+
+      - name: Prepare artifact
+        if: matrix.configuration == 'Release'
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Path artifact
+          Copy-Item build-Release/Release/iosdumper.exe artifact/
+          Copy-Item signatures.json, README.md, LICENSE artifact/
+
+      - name: Upload Release artifact
+        if: matrix.configuration == 'Release'
+        uses: actions/upload-artifact@v7
+        with:
+          name: iosdumper-windows-x64
+          path: artifact/
+          if-no-files-found: error

@@ -1,0 +1,43 @@
+name: Bug report
+description: Report a reproducible build, scan, or output problem
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Please search existing issues before opening a new report.
+  - type: input
+    id: version
+    attributes:
+      label: iosdumper version or commit
+      placeholder: v1.0.0 or commit SHA
+    validations:
+      required: true
+  - type: input
+    id: windows
+    attributes:
+      label: Windows version
+      placeholder: Windows 11 24H2
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction steps
+      description: Include the command used and whether IOSoccer was already running.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: Diagnostics
+      description: Paste out/diagnostics.json and remove anything you do not want public.
+      render: json
+    validations:
+      required: true
